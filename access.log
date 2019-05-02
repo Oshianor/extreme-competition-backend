@@ -1,0 +1,99 @@
+{"message":"data and salt arguments required","level":"info"}
+{"message":"data and salt arguments required","level":"info"}
+{"message":"data and salt arguments required","level":"info"}
+{"message":"data and salt arguments required","level":"info"}
+{"message":"data and salt arguments required","level":"info"}
+{"message":"data and hash arguments required","level":"info"}
+{"message":"imgUrl is not defined","level":"info"}
+{"message":"imgUrl is not defined","level":"info"}
+{"message":"ext is not defined","level":"info"}
+{"message":"fields is not defined","level":"info"}
+{"message":"files.map is not a function","level":"info"}
+{"message":"name is not defined","level":"info"}
+{"message":"Joi.numer is not a function","level":"info"}
+{"message":"Cannot read property 'name' of undefined","level":"info"}
+{"message":"Cannot read property 'name' of undefined","level":"info"}
+{"message":"Game validation failed: timer: Path `timer` (Sat Mar 30 2019 22:19:14 GMT+0100 (West Africa Standard Time)) is before minimum allowed value (Sat Mar 30 2019 22:19:49 GMT+0100 (West Africa Standard Time)).","level":"info"}
+{"message":"getAllGames is not a function","level":"info"}
+{"message":"Invalid sort value: { status: true }","level":"info"}
+{"message":"Parameter \"filter\" to findOne() must be an object, got 5ca0ae0a1fb1cd5ed8f4a777","level":"info"}
+{"message":"Parameter \"filter\" to findOne() must be an object, got 5ca0ae0a1fb1cd5ed8f4a777","level":"info"}
+{"message":"validateCreateGame is not defined","level":"info"}
+{"message":"amt is not defined","level":"info"}
+{"message":"Play validation failed: luckyNumber: Path `luckyNumber` (23451) is more than maximum allowed value (5).","level":"info"}
+{"message":"Play validation failed: luckyNumber: Path `luckyNumber` (267) is more than maximum allowed value (5).","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"game is not defined","level":"info"}
+{"message":"Game validation failed: name: Path `name` (`we`) is shorter than the minimum allowed length (5).","level":"info"}
+{"message":"gameId is not defined","level":"info"}
+{"message":"The field 'winners' must be an array but is of type object in document {_id: ObjectId('5ca3acd367b481050115ce8f')}","level":"info"}
+{"message":"_range is not defined","level":"info"}
+{"message":"User validation failed: phone: Path `phone` is required., fullName: Path `fullName` is required.","level":"info"}
+{"message":"Invalid select: select only takes 1 argument","level":"info"}
+{"message":"Cannot read property 'find' of undefined","level":"info"}
+{"message":"Cannot read property 'find' of undefined","level":"info"}
+{"message":"Cannot read property 'find' of undefined","level":"info"}
+{"message":"Cannot read property 'find' of undefined","level":"info"}
+{"message":"Cannot read property 'find' of undefined","level":"info"}
+{"message":"Cannot read property 'find' of undefined","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cast to ObjectId failed for value \"undefined\" at path \"_id\" for model \"Game\"","level":"info"}
+{"message":"Cannot read property '_id' of null","level":"info"}
+{"message":"Cannot read property '_id' of null","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
+{"message":"Cannot set headers after they are sent to the client","level":"info"}
