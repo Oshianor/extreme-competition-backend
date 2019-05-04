@@ -1,7 +1,7 @@
 const cron = require('node-cron');
 const { Game } = require('../../models/game.models');
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('20 * * * *', async () => {
 	let availableGmaes = await Game.find({ status: true });
 	console.log('availableGmaes.length', availableGmaes.length);
 	
