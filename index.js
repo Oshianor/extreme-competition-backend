@@ -11,7 +11,7 @@ const app = express();
 let cors = require('cors')
 const error = require("./middlewares/error.middlewares");
 require('winston-mongodb');
-// require('./services/cron/update.game.cron');
+require('./services/cron/update.game.cron');
 var logger = require('./logger');
 
 
@@ -63,6 +63,7 @@ const corsOptions = {
 // routes folders
 app.use(cors(corsOptions));
 app.use(express.static('public'));
+
 
 app.use('/api/user', user);
 app.use('/api/auth', auth);
