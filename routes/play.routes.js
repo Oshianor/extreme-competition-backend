@@ -8,7 +8,7 @@ const {
 	getAllAvailableTicketForGame
 } = require('../services/play/read.play');
 const { checkIfGameIsActive } = require('../services/game/read.game')
-
+var nodemailer = require("nodemailer");
 
 
 // create new play
@@ -20,6 +20,10 @@ router.post('/', auth, async(req, res) => {
 	let gameId = req.body.gameId;
 	let ticket = req.body.ticket;
 	let amt = req.body.amt;
+	let email = req.user.email;
+
+
+	console.log("ticket", ticket);
 
 	// check if game is active for play
 	const gameActive = await checkIfGameIsActive(gameId);
@@ -41,7 +45,28 @@ router.post('/', auth, async(req, res) => {
         response.error = true;
         response.msg = error.details[0].message;
         return res.status(200).send(response);
+			}
+			
+
+		var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "abundanceoshianor@gmail.com",
+        pass: "one1PUSSYfour4me"
       }
+    });
+
+		const mailOptions = {
+      from: "abundanceoshianor@gmail.com", // sender address
+      to: email, // list of receivers
+      subject: "Ticket Receipt", // Subject line
+      html: `<h4>Payment for #${ticket} was successfully.</h4>` // plain text body
+    };
+
+		transporter.sendMail(mailOptions, function(err, info) {
+      if (err) console.log(err);
+      else console.log(info);
+    });
 
 		ticket.forEach(async tick => {
       console.log(tick);
@@ -60,14 +85,20 @@ router.post('/', auth, async(req, res) => {
       let game = await createGamePlay(userId, gameId, tick, name, amt);
       response.error = true;
       response.msg =
-        "Something went wrong and game play couldn't be created!";
-      if (!game) return res.status(200).send(response);
-
-      response.error = false;
+				"Something went wrong and game play couldn't be created!";
+			response.content = await getAllAvailableTicketForGame(gameId);
+			if (!game) return res.status(200).send(response);
+			
+			response.error = false;
       response.msg = "";
       response.content = await getAllAvailableTicketForGame(gameId);
       return res.send(response);
-    });
+		});
+
+
+
+		
+		
 
 });
 
