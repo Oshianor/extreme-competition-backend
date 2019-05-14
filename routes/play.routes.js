@@ -48,25 +48,24 @@ router.post('/', auth, async(req, res) => {
 			}
 			
 
-		var transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "abundanceoshianor@gmail.com",
-        pass: "one1PUSSYfour4me"
-      }
-    });
+		// var transporter = nodemailer.createTransport({
+    //   service: "gmail",
+    //   auth: {
+        
+    //   }
+    // });
 
-		const mailOptions = {
-      from: "abundanceoshianor@gmail.com", // sender address
-      to: email, // list of receivers
-      subject: "Ticket Receipt", // Subject line
-      html: `<h4>Payment for #${ticket} was successfully.</h4>` // plain text body
-    };
+		// const mailOptions = {
+    //   from: "abundanceoshianor@gmail.com", // sender address
+    //   to: email, // list of receivers
+    //   subject: "Ticket Receipt", // Subject line
+    //   html: `<h4>Payment for #${ticket} was successfully.</h4>` // plain text body
+    // };
 
-		transporter.sendMail(mailOptions, function(err, info) {
-      if (err) console.log(err);
-      else console.log(info);
-    });
+		// transporter.sendMail(mailOptions, function(err, info) {
+    //   if (err) console.log(err);
+    //   else console.log(info);
+    // });
 
 		ticket.forEach(async tick => {
       console.log(tick);
