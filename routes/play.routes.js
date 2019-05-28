@@ -60,7 +60,22 @@ router.post('/', auth, async(req, res) => {
       from: "info.extremecompetitions@gmail.com", // sender address
       to: email, // list of receivers
       subject: "Ticket Receipt", // Subject line
-      html: `<h4>Payment for #${ticket} was successfully.</h4>` // plain text body
+      html: `
+				<img src="https://www.extremecompetitions.com/static/extremecompetitions.jpeg" />
+				<br /><br />
+				<h4>Hello, ${name}</h4>
+				<br />
+				<p>Congratulations and this is your unique ticket number #${ticket}. A live streamed video to our host would appear once the timer runs out.</p>
+				<br />
+				<p>Our Customer support team is available 24/7.</p>
+				<br />
+				<p>Best Regards,</p>
+				<br />
+				<p>Extreme Competitions Team!</p>
+				<br /><br />
+				<p>2019 TCAI</p>
+      ` // plain text body
+      // html: `<h4>Payment for #${ticket} was successfully.</h4>` // plain text body
     };
 
 		transporter.sendMail(mailOptions, function(err, info) {

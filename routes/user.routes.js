@@ -4,6 +4,8 @@ const { User, validateRegisterUser } = require('../models/user.models');
 const express = require('express');
 const router = express.Router();
 const auth = require('../middlewares/auth.middlewares');
+var nodemailer = require("nodemailer");
+
 
 
 // register
@@ -59,7 +61,43 @@ router.post('/', async (req, res) => {
     password: hashPassword
   });
 
-	let user = await newUser.save();
+  let user = await newUser.save();
+  
+  var transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "info.extremecompetitions@gmail.com",
+      pass: "Extreme-competitions123"
+    }
+  });
+
+  const mailOptions = {
+    from: "info.extremecompetitions@gmail.com", // sender address
+    to: email, // list of receivers
+    subject: "Welcome Email", // Subject line
+    html: `
+      <img src="https://www.extremecompetitions.com/static/extremecompetitions.jpeg" />
+      <br /><br />
+      <h4>Hello, ${fullName}</h4>
+      <br />
+      <p>Congratulations and welcome to Extremecompetitions. 
+      We are Africa’s largest interactive prize competition platform.</p>
+      <br />
+      <p>If you have any questions, please visit our FAQ page or contact us. 
+      Our Customer support team is available 24/7.</p>
+      <br />
+      <p>Best Regards,</p>
+      <br />
+      <p>Extreme Competitions Team!</p>
+      <br /><br />
+      <p>2019 TCAI</p>
+      ` // plain text body
+  };
+
+  transporter.sendMail(mailOptions, function(err, info) {
+    if (err) console.log(err);
+    else console.log(info);
+  });
 
   // generate token for the user
   const token = user.generateAuthToken();

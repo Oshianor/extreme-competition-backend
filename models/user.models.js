@@ -51,11 +51,11 @@ const User = mongoose.model('User', userSchema);
 
 function validateRegisterUser(user) {
   const schema = {
-    fullName: Joi.string().min(3).max(255).required(),
+    fullName: Joi.string().required(),
     email: Joi.string().min(5).max(255).required().email(),
     phone: Joi.number().required(),
-    password: Joi.string().min(5).max(255).required(),
-    confirmPassword: Joi.string().min(5).max(255).required()
+    password: Joi.string().min(4).max(255).required(),
+    confirmPassword: Joi.string().min(4).max(255).required()
   };
 
   return Joi.validate(user, schema);
