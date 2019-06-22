@@ -4,6 +4,9 @@ const { User, validateLoginUser } = require('../models/user.models');
 const express = require('express');
 const router = express.Router();
 const auth = require('../middlewares/auth.middlewares');
+const moment = require("moment")
+const nodemailer = require("nodemailer");
+
 
 
 // login
@@ -47,102 +50,127 @@ router.post('/', async (req, res) => {
 
 
 
+router.post("/reset", async (req, res) => {
+  let userRes = { error: true, msg: "", content: [] };
 
+  let email = req.body.email;
 
-router.post('/changepassword', auth, async (req, res) => {
-  let userRes = { error: true, msg: '', content: [] };
-  let userObjId = req.user.userObjId;
-  // let user = await User.findOne({ email: req.body.email.toLowerCase() });
-  let user = await User.findById(userObjId);
-  
-  // check if current password providied matched
-  let hashNewPassword = user.password.replace('$2y$', '$2b$');
-  const validPassword = await bcrypt.compare(req.body.password, hashNewPassword);
+  let user = await User.findOne({
+    email: { $regex: new RegExp("^" + email, "i") }
+  });
 
-  userRes.msg = 'Please provide your current password.';
-  userRes.error = true;  
-  if (!validPassword) return res.status(200).send(userRes);
+  userRes.error = true;
+  userRes.msg =
+    "Password has been resetted. Check your email for link to change password";
+  if (!user) return res.status(404).send(userRes);
 
-  // now if the current provided is a match then
-  let newPass = await bcrypt.hash(req.body.newPassword, 10);
-  newPass = newPass.replace('$2b$', '$2y$');
-  
-  // update the user password
-  await User.findByIdAndUpdate(userObjId, { password: newPass });
+  let token = generateToken();
+
+  var transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "info.extremecompetitions@gmail.com",
+      pass: "Extreme-competitions123"
+    }
+  });
+
+  const mailOptions = {
+    from: "info.extremecompetitions@gmail.com", // sender address
+    to: email, // list of receivers
+    subject: "Password Reset Link",
+    html:
+      '<body style="text-align: center; margin: 2% 15%;"><img src="https://www.extremecompetitions.com/static/extremecompetitions.jpeg" ><h2 style="margin-bottom: 10px;text-transform: uppercase;">Password Reset</h2><h4 style="text-align: left">Hi,' +
+      user.fullName +
+      " </h4><p>We've received a request to reset your password. If you didn't make the request, just ignore this email. Otherwise, you can reset your password using this link. This link will expire in 2 hours.</p><a href=\"https://extremecompetitions.com/reset/" +
+      token +
+      '" style="font-size: 15px; text-decoration: none; font-weight: 500; background-color: #3cb7e6;color: black; padding: 15px; border-radius: 0px;box-shadow: 0px 2px 3px -1px"> RESET PASSWORD</a> <p>Thanks,</p><p>The Extreme Competition Team,</p><br /><br /><p>2019 TCAI</p></body>'
+  };
+
+  transporter.sendMail(mailOptions, function(err, info) {
+    if (err) console.log(err);
+    else console.log(info);
+  });
+
+  await User.findOneAndUpdate(
+    { email: { $regex: new RegExp("^" + email, "i") } },
+    { remember_token: { token, expired: moment().add(2, "hours") } }
+  );
 
   userRes.error = false;
-  userRes.msg = '';
+  userRes.msg =
+    "Password as been resetted. Check your email for link to change password";
+  userRes.content = [];
+  return res.send(userRes);
+});
+
+
+
+
+router.get("/check/resettoken/:token", async (req, res) => {
+  console.log("yes");
+  
+  let userRes = { error: true, msg: "", content: [] };
+
+  let token = req.params.token;
+  let currentDate = new Date().valueOf();
+
+  let user = await User.findOne({
+    "remember_token.token": token,
+    "remember_token.expired": { $gt: currentDate }
+  }).select({
+    _id: 1
+  });
+  console.log("userus", token, "eruser", user, "currentDate", currentDate);
+
+  userRes.error = true;
+  userRes.msg = "Token alreadly expired. Pleasee reset password again.";
+  if (!user) return res.status(404).send(userRes);
+
+  userRes.error = false;
+  userRes.msg = "Password as been resetted. Check your email for new password";
+  userRes.content = user;
+  return res.send(userRes);
+});
+
+
+
+router.post("/user/reset/password", async (req, res) => {
+  let userRes = { error: true, msg: "", content: [] };
+
+  let userObjId = req.body.userObjId;
+  let password = req.body.password;
+
+  // let user = await User.findById(userObjId);
+
+  // now if the current provided is a match then
+  let newPass = await bcrypt.hash(password, 10);
+  // newPass = newPass.replace("$2b$", "$2y$");
+
+  // update the user password
+  await User.findByIdAndUpdate(userObjId, {
+    password: newPass,
+    remember_token: null,
+  });
+
+  userRes.error = false;
+  userRes.msg = "";
   res.send(userRes);
 });
 
 
 
-router.post("/reset", async (req, res) => {
-  let userRes = { error: true, msg: '', content: [] };
-
-  // let user = await User.findOne({ email: { $regex: new RegExp("^" +  req.body.email , "i") } });
-
-  // userRes.error = true;
-  // userRes.msg = 'Invalid email or password.';
-  // if (!user) return res.status(200).send(userRes);
-
-  // let newPassword = generatePassword();
-  // // console.log(newPassword);
-  // let password = await bcrypt.hash(newPassword, 10);
-  // password = password.replace('$2b$', '$2y$');
-
-  // let sent = sendEmail(req.body.email, newPassword);
-  // console.log(sent);
-  let conf = {
-    accessKeyId: "AKIAIVM5YAKRETCVAYLQ",
-    secretAccessKey: "AugwfIKr2tzsPx7aQhVM/DK1UDU4Fs6evVyPUf85Rhez",
-    region: "us-east-1"
-  }
-
-  AWS.config.update(conf);
-  
-
-  var params = {
-    Destination: { /* required */
-      ToAddresses: [
-        'Abundanceoshianor@gmail.com'
-      ]
-    },
-    Message: { /* required */
-      Body: { /* required */
-        Html: {
-          Charset: "UTF-8",
-          Data: "<h4>Your password as been resetted.</h4><br/><p>A new password <strong>" + 1112222 + "</strong> has been generated for you to log in. Please ensure to change your password from your profile</p>"
-        },
-      },
-      Subject: {
-        Charset: 'UTF-8',
-        Data: 'Test email'
-      }
-    },
-    Source: 'noreply@tipestry.com',
-    /* required */
-    ReplyToAddresses: [
-      ''
-    ],
-  };
-
-  var sendPromise = new AWS.SES({
-    apiVersion: '2010-12-01'
-  }).sendEmail(params).promise();
-
-  // Handle promise's fulfilled/rejected states
-  sendPromise.then(
-    function (data) {
-      console.log(data.MessageId);
-    }).catch(
-    function (err) {
-      console.error(err, err.stack);
-    });
-  
-});
 
 
+function generateToken() {
+  var text = "";
+  var possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 40; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
 
 
 function generatePassword() {
