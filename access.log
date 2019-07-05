@@ -104,3 +104,7 @@
 {"message":"Cannot set headers after they are sent to the client","level":"info"}
 {"message":"Cannot set headers after they are sent to the client","level":"info"}
 {"message":"User validation failed: fullName: Path `fullName` (`boy`) is shorter than the minimum allowed length (5).","level":"info"}
+{"message":"User validation failed: fullName: Path `fullName` (`test`) is shorter than the minimum allowed length (5).","level":"info"}
+{"message":"User validation failed: fullName: Path `fullName` (`test`) is shorter than the minimum allowed length (5).","level":"info"}
+{"message":"User validation failed: fullName: Path `fullName` (`test`) is shorter than the minimum allowed length (5).","level":"info"}
+{"message":"Cannot read property 'filename' of undefined","level":"info"}

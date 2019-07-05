@@ -111,16 +111,16 @@ router.post('/edit', auth, admin, async (req, res) => {
 
 
 
-router.post('/winner/add', auth, admin, upload.array('img', 1), async (req, res) => {
+router.post('/winner/add', auth, admin, upload.single('img'), async (req, res) => {
 	let response = { error: true, msg: '', content: [] };
 
-	console.log('req.files', req.files[0]);
+	console.log('req.files', req.file);
 
 	let name = req.body.name;
 	let dateWon = req.body.dateWon;
 	let prize = req.body.prize;
 	let ticket = req.body.ticket;
-	let img = req.files[0].filename;
+	let img = req.file.filename;
 	let winnerVideo = req.body.winnerVideo;
 	let liveDrawVideo = req.body.liveDrawVideo;
 
