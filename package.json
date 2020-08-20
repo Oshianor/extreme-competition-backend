@@ -10,7 +10,7 @@
   "author": "Abundance Oshianor",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.5",
+    "bcrypt": "^5.0.0",
     "config": "^3.0.1",
     "cors": "^2.8.5",
     "express": "^4.16.4",
